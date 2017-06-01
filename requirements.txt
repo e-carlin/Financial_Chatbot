@@ -1,8 +1,11 @@
 certifi==2017.4.17
 chardet==3.0.3
+dj-database-url==0.4.2
 Django==1.11.1
 djangorestframework==3.6.3
+gunicorn==19.7.1
 idna==2.5
+psycopg2==2.7.1
 PyJWT==1.5.0
 PySocks==1.6.7
 pytz==2017.2
@@ -10,3 +13,5 @@ requests==2.17.3
 six==1.10.0
 twilio==6.3.0
 urllib3==1.21.1
+whitenoise==3.3.0
+wit==4.2.0
