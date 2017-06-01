@@ -1,0 +1,11 @@
+Run tests:
+	$ python3 manage.py test
+
+Make migrations:
+	$ python3 manage.py makemigrations
+Apply migrations:
+	$ python3 manage.py migrate
+
+
+Start dev server!:
+	$ python3 manage.py runserver
