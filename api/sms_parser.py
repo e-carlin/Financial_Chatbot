@@ -15,7 +15,7 @@ actions = {
 
 def respond_to_request(request):
     """Send a dynamic reply to an incoming text message"""
-
+    print("**** responding to request")
     twilio_resp = MessagingResponse()
 
     # Get the contents of the POST request
@@ -25,7 +25,7 @@ def respond_to_request(request):
 
     #TODO: Add try except to see if user exsists in our db
     user = User.objects.get(phone_number=from_phone)
-
+    print("***** Got user: "+str(user))
     client = Wit(access_token=wit_access_token, actions=actions)
     wit_resp = client.message(message)
     print('***** Wit.ai response: ' + str(wit_resp))

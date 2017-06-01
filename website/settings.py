@@ -125,20 +125,34 @@ USE_L10N = True
 USE_TZ = True
 
 
+# ********************* DJANGO girls *************************
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+# PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+# STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+# STATIC_URL = '/static/'
+
+
+# # Added by e-carlin
+# import dj_database_url
+# # DATABASES['default'] = dj_database_url.config()
+
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# ALLOWED_HOSTS = ['*']
+
+# DEBUG = False
+# ************************************************************
+
+# ************ https://simpleisbetterthancomplex.com/tutorial/2016/08/09/how-to-deploy-django-applications-on-heroku.html ************
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
-# Added by e-carlin
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-ALLOWED_HOSTS = ['*']
-
-DEBUG = False
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# ****************************************************************************
