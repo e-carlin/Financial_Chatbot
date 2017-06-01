@@ -87,7 +87,7 @@ DATABASES = {
         'NAME': 'financial_chatbot_website',
         'USER': 'evan',
         'PASSWORD': 'chatbot_01..',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }

@@ -10,7 +10,8 @@ Apply migrations:
 Start dev server!:
 	$ python3 manage.py runserver
 
-
+Database console:
+	$ python3 manage.py dbshell
 
 Postgres:
 Login:
