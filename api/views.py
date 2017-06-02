@@ -36,3 +36,13 @@ class IndexView(View):
 			return HttpResponse("You have been added to the db")
 		else:
 			return HttpResponse("Woops something went wrong!")
+
+
+
+
+def show_users(request):
+	print("All is called")
+	users = User.objects.all()
+	for user in users:
+		print(str(user))
+	return render(request, 'web_interface/show_users.html', {'users': users})
