@@ -42,12 +42,16 @@ def respond_to_request(request):
     elif wit_resp['entities']['intent'][0]['value'] == 'set_balance':
         # Update the User balance
         user.balance = wit_resp['entities']['amount_of_money'][0]['value']
-        print("Now user is "+str(user))
         user.save()
         
         #Get their balance to send back to them
         twilio_resp.message("Hi, {} your balance was updated to: ${}".format(user.first_name, user.balance))
-    
+    elif print(wit_resp['entities']['intent'][0]['value']) == 'subtract_from_balance':
+        user.balance -= wit_resp['entities']['amount_of_money'][0]['value']
+        user.save()
+
+        #Let them know of the change
+        twilio_resp.message("Hi, {} {} was subtracted from your balance. You have ${} remaining".format(user.first_name, wit_resp['entities']['amount_of_money'][0]['value'], user.balance))
     else:
         twilio_resp.message("Not sure what to do..."+str(wit_resp))
 
