@@ -1,12 +1,11 @@
 venv/
-website/static
 website/local_settings.py
-static/
 
 
 # Byte-compiled / optimized / DLL files
 api/migrations/__pycache__/
 web_interface/migrations/__pycache__/
+website/__pycache__/
 __pycache__/
 *.py[cod]
 *$py.class

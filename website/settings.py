@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -102,19 +103,42 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_URL = '/static/'
+
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-try:
-    from .production_settings import *
-    print("***** Production settings imported *****")
-except ImportError:
-    pass
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'financial_chatbot_website',
+        'USER': 'evan',
+        'PASSWORD': 'chatbot_01..',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
 
-try:
-    from .local_settings import *
-    print("***** Local settings  imported *****")
-except ImportError:
-    pass
+DATABASES['default'] = dj_database_url.config()
+DEBUG = True;
+
+
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# try:
+#     from .production_settings import *
+#     print("***** Production settings imported *****")
+# except ImportError:
+#     pass
+
+# try:
+#     from .local_settings import *
+#     print("***** Local settings  imported *****")
+# except ImportError:
+#     pass
