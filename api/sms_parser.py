@@ -46,7 +46,7 @@ def respond_to_request(request):
         
         #Get their balance to send back to them
         twilio_resp.message("Hi, {} your balance was updated to: ${}".format(user.first_name, user.balance))
-    elif print(wit_resp['entities']['intent'][0]['value']) == 'subtract_from_balance':
+    elif wit_resp['entities']['intent'][0]['value'] == 'subtract_from_balance':
         user.balance -= wit_resp['entities']['amount_of_money'][0]['value']
         user.save()
 
