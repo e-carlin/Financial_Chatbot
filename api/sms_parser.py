@@ -25,15 +25,12 @@ def respond_to_request(request):
     from_phone = request_dict['From'] # The number the text came from
 
     #TODO: Add try except to see if user exsists in our db
-    print("***** TRying to get user")
     user = User.objects.get(phone_number=from_phone)
-    print("******* Got user")
-    print("***** Got user: "+str(user))
     client = Wit(access_token=wit_access_token, actions=actions)
     wit_resp = client.message(message)
     print('***** Wit.ai response: ' + str(wit_resp))
 
-    if not wit_resp['entities']:
+    if 'entities' not in wit_resp or 'intent' not in wit_resp['entities']:
         twilio_resp.message("We can't parse what you asked "+str(wit_resp))
 
     elif wit_resp['entities']['intent'][0]['value'] == 'get_balance':
