@@ -6,7 +6,6 @@ from .env_config import access_token as wit_access_token
 from web_interface.serializers import UserSerializer
 from web_interface.models import User
 
-
 # Wit.ai send (who knows if I need this), I don't think I do
 def send(request, response):
     print(response['text'])
