@@ -1,4 +1,8 @@
+{% extends 'web_interface/base.html' %}
+
+{% block content %}
 <h1> Showing Users </h1>
 {% for user in users  %}
   <p>{{ user }}</p>
 {% endfor %}
+{% endblock %}

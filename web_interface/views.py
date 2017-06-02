@@ -23,10 +23,11 @@ class IndexView(View):
 			return HttpResponse("Woops something went wrong!")
 
 
+def welcome(request):
+	return render(request, 'web_interface/welcome.html')
 
 
 def show_users(request):
-	print("All is called")
 	users = User.objects.all()
 	for user in users:
 		print(str(user))
