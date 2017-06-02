@@ -51,7 +51,7 @@ def respond_to_request(request):
         user.save()
 
         #Let them know of the change
-        twilio_resp.message("Hi, {} {} was subtracted from your balance. You have ${} remaining".format(user.first_name, wit_resp['entities']['amount_of_money'][0]['value'], user.balance))
+        twilio_resp.message("Hi, {} ${} was subtracted from your balance. You have ${} remaining".format(user.first_name, wit_resp['entities']['amount_of_money'][0]['value'], user.balance))
     else:
         twilio_resp.message("Not sure what to do..."+str(wit_resp))
 
