@@ -3,7 +3,8 @@ from twilio.twiml.messaging_response import MessagingResponse
 from wit import Wit
 # Environment configuration
 from .env_config import access_token as wit_access_token
-from .models import User
+from web_interface.serializers import UserSerializer
+from web_interface.models import User
 
 
 # Wit.ai send (who knows if I need this), I don't think I do
@@ -24,7 +25,9 @@ def respond_to_request(request):
     from_phone = request_dict['From'] # The number the text came from
 
     #TODO: Add try except to see if user exsists in our db
+    print("***** TRying to get user")
     user = User.objects.get(phone_number=from_phone)
+    print("******* Got user")
     print("***** Got user: "+str(user))
     client = Wit(access_token=wit_access_token, actions=actions)
     wit_resp = client.message(message)

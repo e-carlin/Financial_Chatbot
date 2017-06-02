@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
-from api.models import User
+from .serializers import UserSerializer
+from .models import User
 from .forms import UserForm
 
 class IndexView(View):

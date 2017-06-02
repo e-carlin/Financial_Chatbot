@@ -1,13 +1,12 @@
 from rest_framework.views import APIView 
 from django.http import HttpResponse
-from django.views import View
-from .serializers import UserSerializer 
+from django.views import View 
 from .sms_parser import respond_to_request
 # ------ For IndexView --------
 from rest_framework.response import Response # For GET
 from django.http import HttpResponse # For index
 from django.shortcuts import render
-from .models import User
+from web_interface.models import User
 
 
 class SMSView(APIView):
