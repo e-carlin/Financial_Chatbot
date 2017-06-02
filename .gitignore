@@ -5,6 +5,8 @@ static/
 
 
 # Byte-compiled / optimized / DLL files
+api/migrations/__pycache__/
+web_interface/migrations/__pycache__/
 __pycache__/
 *.py[cod]
 *$py.class
