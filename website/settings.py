@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,10 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '(_01)s3lr15r0!@i1x7tslj*cm&%14am7za3%o-dk3fd&s$^@5'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['a1b9e22e.ngrok.io', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -124,33 +122,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+try:
+    from production_settins import *
+except ImportError:
+    pass
 
-# ********************* DJANGO girls *************************
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
-# PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-# STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
-# STATIC_URL = '/static/'
-
-
-# # Added by e-carlin
-# import dj_database_url
-# # DATABASES['default'] = dj_database_url.config()
-
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# ALLOWED_HOSTS = ['*']
-
-# DEBUG = False
-# ************************************************************
-
-# ************ https://simpleisbetterthancomplex.com/tutorial/2016/08/09/how-to-deploy-django-applications-on-heroku.html ************
-import dj_database_url
-DATABASES = {'default': dj_database_url.config(default="postgres://horppihyabccmv:914fa0a2e87471f9b408799f0432a6a96d532d8eea8a15fe3e957f62b65fd61b@ec2-54-225-68-71.compute-1.amazonaws.com:5432/d112fanfi0cnrf")}
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
-
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-ALLOWED_HOSTS = ['*']
-# ****************************************************************************
+try:
+    from local_settings import *
+except ImportError:
+    pass
