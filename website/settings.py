@@ -108,12 +108,12 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 try:
     from .production_settings import *
+    print("***** Production settings imported *****")
 except ImportError:
-    print("****** Production settings weren't imported *****")
     pass
 
 try:
     from .local_settings import *
+    print("***** Local settings  imported *****")
 except ImportError:
-    print("***** Local settings weren't imported *****")
     pass
