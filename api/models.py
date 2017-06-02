@@ -11,4 +11,10 @@ class User(models.Model):
 
     def __str__(self):
         """Return a human readable representation of the model instance."""
-        return "ID: {}, Fname: {}, Lname: {}, Phone: {}, Bal: {}, DC: {}".format(self.id, self.first_name, self.last_name, self.phone_number, self.balance, self.date_created)
+        return "ID: {}, Fname: {}, Lname: {}, Phone: {}, Bal: {}, DC: {}, DM: {}".format(self.id, 
+            self.first_name, 
+            self.last_name, 
+            self.phone_number, 
+            self.balance, 
+            self.date_created,
+            self.date_modified)
