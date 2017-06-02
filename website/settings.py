@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework', # Added by e-carlin for Rest API
     'api', # Added by e-carlin. This is our Rest API app
+    'web_interface', # Added by e-carlin. This is the website users interact with
 ]
 
 MIDDLEWARE = [
