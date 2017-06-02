@@ -13,6 +13,9 @@ Start dev server!:
 Database console:
 	$ python3 manage.py dbshell
 
+Deploy to heroku:
+	$ git push heroku master
+
 Postgres:
 Login:
 	$ sudo su - postgres
