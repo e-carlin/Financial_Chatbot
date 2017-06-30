@@ -1,0 +1,8 @@
+{% extends 'web_interface/base.html' %}
+
+{% block content %}
+<h1> Showing Spendings </h1>
+{% for line in spendings  %}
+  <p>{{ line }}</p>
+{% endfor %}
+{% endblock %}
