@@ -1,3 +1,6 @@
+# PyCharm
+.idea/
+
 venv/
 website/local_settings.py
 
