@@ -2,9 +2,9 @@ Run tests:
 	$ python3 manage.py test
 
 Make migrations:
-	$ python3 manage.py makemigrations #add heroku run to beginning for prod
+	$ python3 manage.py makemigrations #PROD: heroku run python3 manage.py makemigrations
 Apply migrations:
-	$ python3 manage.py migrate
+	$ python3 manage.py migrate #heroku run python3 manage.py migrate
 
 
 Start dev server!:

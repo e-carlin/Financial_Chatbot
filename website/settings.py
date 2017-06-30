@@ -112,16 +112,16 @@ STATIC_URL = '/static/'
 
 
 
-# DATABASES = { #for DEV
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'financial_chatbot_website',
-#         'USER': 'evan',
-#         'PASSWORD': 'chatbot_01..',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# } 
+DATABASES = { #for DEV
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'financial_chatbot_website',
+        'USER': 'evan',
+        'PASSWORD': 'chatbot_01..',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+} 
 
 DATABASES['default'] = dj_database_url.config() #for PROD
 DEBUG = True;
