@@ -24,7 +24,7 @@ Start cl interface:
 	$ psql
 
 Connect to DB:
-	$ \c finacial_chatbot_website
+	$ \c financial_chatbot_website
 
 Insert user:
 	$ insert into api_user values(1, '+13034959592', 'Evan', 'Carlin', '2017-06-01 16:33:00.786014', '2017-06-01 16:33:00.786064', 1.22);
