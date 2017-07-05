@@ -1,5 +1,6 @@
 from twilio.twiml.messaging_response import MessagingResponse
 from wit import Wit
+from decimal import Decimal
 from web_interface.serializers import UserSerializer
 from web_interface.models import User, Profile
 
@@ -62,7 +63,7 @@ def parse_request(message):
 
 
 def get_amount(message):
-	return message['entities']['amount_of_money'][0]['value']
+	return Decimal(message['entities']['amount_of_money'][0]['value'])
 
 
 def get_intent(message):
