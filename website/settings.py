@@ -55,7 +55,7 @@ ROOT_URLCONF = 'website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates', './templates/web_interface/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +67,10 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
 
 WSGI_APPLICATION = 'website.wsgi.application'
 
@@ -123,12 +127,15 @@ DATABASES = { #for DEV
     }
 } 
 
-DATABASES['default'] = dj_database_url.config() #for PROD
+# DATABASES['default'] = dj_database_url.config() #for PROD
 DEBUG = True;
 
 
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+LOGIN_REDIRECT_URL = '/' #TODO: need a better redirect
 # try:
 #     from .production_settings import *
 #     print("***** Production settings imported *****")

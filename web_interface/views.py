@@ -6,11 +6,11 @@ from django.contrib.auth.models import User
 
 
 def welcome(request):
-	return render(request, 'web_interface/welcome.html')
+	return render(request, 'welcome.html')
 
 
 def show_users(request):
 	users = User.objects.all()
 	for user in users:
 		print(str(user))
-	return render(request, 'web_interface/show_users.html', {'users': users})
+	return render(request, 'show_users.html', {'users': users})
