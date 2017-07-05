@@ -37,18 +37,18 @@ def get_response(request_message, request_phone):
 		return build_response("Intent is NONE! "+str(parsed_request))
 
 	elif intent == 'get_balance':
-		return build_response("Hi, {} your balance is: ${}".format(user.first_name, user.balance))
+		return build_response("Hi, {} your balance is: ${:0.2f}".format(user.first_name, user.balance))
 
 	elif intent == 'set_balance':
 		user.balance = get_amount(parsed_request)
 		user.save()
-		return build_response("Hi, {} your balance was updated to: ${}".format(user.first_name, user.balance))
+		return build_response("Hi, {} your balance was updated to: ${:0.2f}".format(user.first_name, user.balance))
 
 	elif intent == 'subtract_from_balance':
 		amount = get_amount(parsed_request)
 		user.balance -= amount
 		user.save()
-		return build_response("Hi, {} ${} was subtracted from your balance. You have ${} remaining".format(user.first_name, amount, user.balance))
+		return build_response("Hi, {} ${:0.2f} was subtracted from your balance. You have ${:0.2f} remaining".format(user.first_name, amount, user.balance))
 
 	else:
 		return build_response("Down at ELSE: "+ str(parsed_request))
