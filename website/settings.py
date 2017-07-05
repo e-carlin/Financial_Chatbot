@@ -123,7 +123,7 @@ DATABASES = { #for DEV
     }
 } 
 
-DATABASES['default'] = dj_database_url.config() #for PROD
+# DATABASES['default'] = dj_database_url.config() #for PROD
 DEBUG = True;
 
 

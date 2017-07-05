@@ -31,3 +31,12 @@ Insert user:
 
 Quit:
 	$ \q
+
+Tunnel:
+	$ ngrok http 8000
+			or
+	$ lt --port 8000
+
+/admin
+ecarlin
+chatbot_01..
