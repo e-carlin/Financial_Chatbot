@@ -7,12 +7,13 @@ from .sms_handler import handle_message
 from rest_framework.response import Response # For GET
 from django.http import HttpResponse # For index
 from django.shortcuts import render
-from web_interface.models import User
+from web_interface.models import User, Profile
 
 
 class SMSView(APIView):
 	def post(self, request, *args, **kwargs):
 	    print(" ***** SMS Got a POST ****")
+
 	    # return HttpResponse(respond_to_request(request))
 	    return HttpResponse(handle_message(request))
 
