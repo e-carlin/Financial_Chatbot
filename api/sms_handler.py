@@ -1,7 +1,7 @@
 from twilio.twiml.messaging_response import MessagingResponse
 from wit import Wit
 from web_interface.serializers import UserSerializer
-from web_interface.models import User
+from web_interface.models import User, Profile
 
 def handle_message(request):
 
@@ -17,7 +17,9 @@ def handle_message(request):
 
 def get_response(request_message, request_phone):
 
-	user = User.objects.get(phone_number=request_phone)
+	user_profile = Profile.objects.get(phone_number=request_phone)
+	user = User.objects.get(profile=user_profile)
+
 	parsed_request = parse_request(request_message)
 
 
@@ -37,18 +39,18 @@ def get_response(request_message, request_phone):
 		return build_response("Intent is NONE! "+str(parsed_request))
 
 	elif intent == 'get_balance':
-		return build_response("Hi, {} your balance is: ${:0.2f}".format(user.first_name, user.balance))
+		return build_response("Hi, {} your balance is: ${:0.2f}".format(user.username, user_profile.balance))
 
 	elif intent == 'set_balance':
-		user.balance = get_amount(parsed_request)
-		user.save()
-		return build_response("Hi, {} your balance was updated to: ${:0.2f}".format(user.first_name, user.balance))
+		user_profile.balance = get_amount(parsed_request)
+		user_profile.save()
+		return build_response("Hi, {} your balance was updated to: ${:0.2f}".format(user.username, user_profile.balance))
 
 	elif intent == 'subtract_from_balance':
 		amount = get_amount(parsed_request)
-		user.balance -= amount
-		user.save()
-		return build_response("Hi, {} ${:0.2f} was subtracted from your balance. You have ${:0.2f} remaining".format(user.first_name, amount, user.balance))
+		user_profile.balance -= amount
+		user_profile.save()
+		return build_response("Hi, {} ${:0.2f} was subtracted from your balance. You have ${:0.2f} remaining".format(user.username, amount, user_profile.balance))
 
 	else:
 		return build_response("Down at ELSE: "+ str(parsed_request))

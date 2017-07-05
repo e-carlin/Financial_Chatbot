@@ -12,6 +12,8 @@ Start dev server!:
 
 Database console:
 	$ python3 manage.py dbshell
+Regular console:
+	$ python3 manage.py shell
 
 Deploy to heroku:
 	$ git push heroku master

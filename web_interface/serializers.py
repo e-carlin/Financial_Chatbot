@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from .models import User
 
+# *********************************** 
+# This can probably be deleted. This was created before using django user
+# *************************************
 class UserSerializer(serializers.ModelSerializer):
     """Serializer to map the Model instance into JSON format."""
 

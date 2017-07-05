@@ -13,7 +13,6 @@ from web_interface.models import User, Profile
 class SMSView(APIView):
 	def post(self, request, *args, **kwargs):
 	    print(" ***** SMS Got a POST ****")
-
 	    # return HttpResponse(respond_to_request(request))
 	    return HttpResponse(handle_message(request))
 
