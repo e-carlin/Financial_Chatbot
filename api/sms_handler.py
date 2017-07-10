@@ -1,7 +1,6 @@
 from twilio.twiml.messaging_response import MessagingResponse
 from wit import Wit
 from decimal import Decimal
-from web_interface.serializers import UserSerializer
 from web_interface.models import User, Profile
 
 def handle_message(request):

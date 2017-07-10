@@ -130,12 +130,14 @@ DATABASES = { #for DEV
 # DATABASES['default'] = dj_database_url.config() #for PROD
 DEBUG = True;
 
-
+# TODO: Remove. This is for testing and logs emails to the console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-
-LOGIN_REDIRECT_URL = '/' #TODO: need a better redirect
+#TODO: need a better redirect. This redirects the user after they've logged in
+LOGIN_REDIRECT_URL = '/account'
+LOGIN_URL = '/accounts/login'
 # try:
 #     from .production_settings import *
 #     print("***** Production settings imported *****")
