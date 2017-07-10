@@ -30,15 +30,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
     <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
     <script>
+    $.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", '{{csrf_token}}');
+    	}
+	});
+	
     (function($) {
         var handler = Plaid.create({
             apiVersion: 'v2',
             clientName: 'Plaid Walkthrough Demo',
             env: '{{ plaid_environment }}',
             product: ['transactions'],
-            key: '{{ plaid_public_key }}',
+            key: '{{plaid_public_key}}',
             onSuccess: function(public_token) {
-                $.post('/get_access_token', {public_token: public_token}, function() {
+                $.post('/get_access_token/', {public_token: public_token,
+                	csrf_token: '{{csrf_token}}'}, function() {
                     $('#container').fadeOut('fast', function() {
                         $('#intro').hide();
                         $('#app, #steps').fadeIn('slow');
@@ -48,43 +55,11 @@
         });
 
         $('#link-btn').on('click', function(e) {
+        	console.log("CLICKED LINK!");
+        	console.log('{{plaid_public_key}}');
+        	console.log('{{plaid_environment}}')
+        	console.log('{{csrf_token}}')
             handler.open();
-        });
-
-        $('#get-accounts-btn').on('click', function(e) {
-            $.get('/accounts', function(data) {
-                $('#get-accounts-data').slideUp(function() {
-                    var html = '';
-                    data.accounts.forEach(function(account, idx) {
-                        html += '<div class="inner">';
-                        html += '<strong>' + account.name +
-                                ' $' + (account.balances.available != null ? account.balances.available : account.balances.current) + '</strong><br>';
-                        html += account.subtype + ' ' + account.mask;
-                        html += '</div>';
-                    });
-
-                    $(this).html(html).slideDown();
-                });
-            });
-        });
-
-        $('#get-item-btn').on('click', function(e) {
-            $.post('/item', function(data) {
-                $('#get-item-data').slideUp(function() {
-                    if(data.error)
-                        $(this).html('<p>' + data.error + '</p>').slideDown();
-                    else {
-                        var html = '<div class="inner">';
-                        html += '<p>Here\'s some basic information about your Item:</p>';
-                        html += '<p>Institution name:' + data.institution.name +'</p>';
-                        html += '<p>Billed products: ' + data.item.billed_products.join(', ') + '</p>';
-                        html += '<p>Available products: ' + data.item.available_products.join(', ') + '</p>';
-                        html += '</div>';
-
-                        $(this).html(html).slideDown();
-                    }
-                });
-            });
         });
 
     $('#get-transactions-btn').on('click', function(e) {

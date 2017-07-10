@@ -1,3 +1,4 @@
+import plaid
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
@@ -17,4 +18,22 @@ def show_users(request):
 
 @login_required
 def show_account(request):
-	return render(request, 'show_account.html')
+	return render(request, 'show_account.html',
+		{'plaid_public_key' : 'fb846942c3ce8e2945b4b1fd408333',
+		'plaid_environment' : 'sandbox'})
+
+#TODO: Django'fy this method and add a url 
+# @app.route("/get_access_token", methods=['POST'])
+def get_access_token(request):
+	print("Getting token")
+	return render(request, 'welcome.html')
+  # global access_token
+  # public_token = request.form['public_token']
+  # exchange_response = client.Item.public_token.exchange(public_token)
+  # print 'access token: ' + exchange_response['access_token']
+  # print 'item ID: ' + exchange_response['item_id']
+
+  # access_token = exchange_response['access_token']
+
+  # return jsonify(exchange_response)
+
