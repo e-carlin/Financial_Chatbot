@@ -33,8 +33,7 @@ def show_account(request):
 		{'plaid_public_key' : 'fb846942c3ce8e2945b4b1fd408333',
 		'plaid_environment' : PLAID_ENV})
 
-#TODO: Django'fy this method and add a url 
-# @app.route("/get_access_token", methods=['POST'])
+# @login ?
 def get_access_token(request):
 	print("Getting token")
 	print("\n")
