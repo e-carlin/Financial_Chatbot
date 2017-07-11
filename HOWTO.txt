@@ -39,6 +39,9 @@ Tunnel:
 			or
 	$ lt --port 8000
 
+Admin:
+	$ python3 manage.py createsuperuser
+
 /admin
 ecarlin
 chatbot_01..
