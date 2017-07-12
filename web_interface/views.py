@@ -1,5 +1,6 @@
 import plaid
 import json
+import datetime
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
@@ -46,3 +47,22 @@ def get_access_token(request):
 	print('access token: ' + exchange_response['access_token'])
 	print('item ID: ' + exchange_response['item_id'])
 	return render(request, 'welcome.html')
+
+
+def get_transactions(request):
+	print("*******************")
+	print("Gettting transaction data.")
+	start_date = "{:%Y-%m-%d}".format(datetime.datetime.now() + datetime.timedelta(-1))
+	end_date = "{:%Y-%m-%d}".format(datetime.datetime.now())
+
+	try:
+	    response = client.Transactions.get(
+	    	access_token="access-sandbox-60766603-c671-4c43-bc59-79c1b7ba3fd3", 
+	    	start_date=start_date, 
+	    	end_date=end_date)
+
+	    print(response)
+	    return render(request, 'welcome.html')
+	except plaid.errors.PlaidError as e:
+		print({'error': {'error_code': e.code, 'error_message': str(e)}})
+		return render(request, 'welcome.html')
