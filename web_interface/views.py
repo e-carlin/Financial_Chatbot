@@ -1,6 +1,7 @@
 import plaid
 import json
 import datetime
+from background_task import background
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
@@ -48,10 +49,11 @@ def get_access_token(request):
 	print('item ID: ' + exchange_response['item_id'])
 	return render(request, 'welcome.html')
 
-
+# @background(schedule=5)
 def get_transactions(request):
 	print("*******************")
 	print("Gettting transaction data.")
+	do_something()
 	start_date = "{:%Y-%m-%d}".format(datetime.datetime.now() + datetime.timedelta(-1))
 	end_date = "{:%Y-%m-%d}".format(datetime.datetime.now())
 
@@ -66,3 +68,9 @@ def get_transactions(request):
 	except plaid.errors.PlaidError as e:
 		print({'error': {'error_code': e.code, 'error_message': str(e)}})
 		return render(request, 'welcome.html')
+
+
+@background(schedule=5)
+def do_something():
+	print(" DONE!")
+	return render(request, 'welcome.html')

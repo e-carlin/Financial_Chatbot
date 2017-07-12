@@ -1,0 +1,17 @@
+START SERVER:
+	$ python3 manage.py runserver
+
+CONSOLE:
+	$ python3 manage.py dbshell
+	$ python3 manage.py shell
+
+
+MIGRATIONS:
+	$ python3 manage.py makemigrations #Prod: add heroku run
+	$ python3 manage.py migrate
+
+ADMIN:
+	$ python3 manage.py createsuperuser
+
+TESTING:
+	$ python3 manage.py test	
