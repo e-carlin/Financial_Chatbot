@@ -70,7 +70,7 @@ def get_transactions(request):
 		return render(request, 'welcome.html')
 
 
-@background(schedule=5)
+# @background(schedule=5)
 def do_something():
-	print(" DONE!")
+	print(" ******************** DONE!")
 	return render(request, 'welcome.html')
