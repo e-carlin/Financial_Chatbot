@@ -128,7 +128,7 @@ DATABASES = { #for DEV
     }
 } 
 
-# DATABASES['default'] = dj_database_url.config() #for PROD
+DATABASES['default'] = dj_database_url.config() #for PROD
 DEBUG = True;
 
 # TODO: Remove. This is for testing and logs emails to the console
