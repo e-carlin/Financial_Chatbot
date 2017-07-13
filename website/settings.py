@@ -128,7 +128,6 @@ DATABASES = { #for DEV
     }
 } 
 
-DATABASES['default'] = dj_database_url.config() #for PROD
 DEBUG = True;
 
 # TODO: Remove. This is for testing and logs emails to the console
@@ -139,14 +138,11 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 #TODO: need a better redirect. This redirects the user after they've logged in
 LOGIN_REDIRECT_URL = '/account'
 LOGIN_URL = '/accounts/login'
-# try:
-#     from .production_settings import *
-#     print("***** Production settings imported *****")
-# except ImportError:
-#     pass
 
-# try:
-#     from .local_settings import *
-#     print("***** Local settings  imported *****")
-# except ImportError:
-#     pass
+# Override settings set above if we are in the production environment
+try:
+    if os.environ['PROD_ENV'] is True:
+        print("### In production environment ###")
+        DATABASES['default'] = dj_database_url.config() #for PROD
+except KeyError:
+    print("### In development environment ###")

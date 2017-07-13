@@ -1,6 +1,8 @@
 DEPLOY:
 	$ git push heroku master
 	$ heroku run python3 manage.py migrate
+	$ heroku scal worker=1
 
 ADD HEROKU:
 	$ heroku git:remote -a financial-chatbot
+
