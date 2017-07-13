@@ -64,10 +64,10 @@ def get_transactions(request):
 	    	end_date=end_date)
 
 	    print(response)
-	    return render(request, 'welcome.html')
+	    return render(request, 'show_account.html')
 	except plaid.errors.PlaidError as e:
 		print({'error': {'error_code': e.code, 'error_message': str(e)}})
-		return render(request, 'welcome.html')
+		return render(request, 'show_acount.html')
 
 
 @background(schedule=5)
