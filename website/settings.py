@@ -141,7 +141,7 @@ LOGIN_URL = '/accounts/login'
 
 # Override settings set above if we are in the production environment
 try:
-    if os.environ['PROD_ENV'] is True:
+    if os.environ['PROD_ENV'] == 'True':
         print("### In production environment ###")
         DATABASES['default'] = dj_database_url.config() #for PROD
 except KeyError:

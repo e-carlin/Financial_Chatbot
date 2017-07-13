@@ -6,3 +6,5 @@ DEPLOY:
 ADD HEROKU:
 	$ heroku git:remote -a financial-chatbot
 
+LOGS:
+	$ heroku logs --tail
